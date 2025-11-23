@@ -1,65 +1,214 @@
-import Image from "next/image";
+"use client";
+
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Badge } from "@/components/ui/badge";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Download, Search, Wrench } from "lucide-react";
+import toolsData from "@/data/tools.json";
+import { useState } from "react";
+import Link from "next/link";
+import { NavigationHeader } from "@/components/navigation-header";
+import { Footer } from "@/components/footer";
 
 export default function Home() {
+  const tools = toolsData.tools;
+  const [searchQuery, setSearchQuery] = useState("");
+
+  // Get unique categories
+  const categories = ["All", ...Array.from(new Set(tools.map(tool => tool.category)))];
+
+  // Filter tools based on search query and category
+  const getFilteredTools = (category: string) => {
+    let filtered = tools;
+
+    // Filter by category
+    if (category !== "All") {
+      filtered = filtered.filter(tool => tool.category === category);
+    }
+
+    // Filter by search query
+    if (searchQuery !== "") {
+      const query = searchQuery.toLowerCase();
+      filtered = filtered.filter(tool =>
+        tool.name.toLowerCase().includes(query) ||
+        tool.description.toLowerCase().includes(query) ||
+        tool.category.toLowerCase().includes(query) ||
+        tool.tags.some(tag => tag.toLowerCase().includes(query))
+      );
+    }
+
+    return filtered;
+  };
+
+  const ToolGrid = ({ category }: { category: string }) => {
+    const filteredTools = getFilteredTools(category);
+    const displayTools = searchQuery === "" 
+      ? filteredTools.filter(tool => tool.featured)
+      : filteredTools;
+
+    if (displayTools.length === 0) {
+      return (
+        <div className="text-center py-12">
+          <p className="text-muted-foreground text-lg">
+            No tools found {searchQuery && `matching "${searchQuery}"`}
+          </p>
+          {searchQuery && (
+            <Button 
+              variant="outline" 
+              className="mt-4"
+              onClick={() => setSearchQuery("")}
+            >
+              Clear Search
+            </Button>
+          )}
+        </div>
+      );
+    }
+
+    return (
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {displayTools.map((tool) => (
+          <Link href={`/tools/${tool.id}`} key={tool.id}>
+            <Card className="hover:shadow-lg transition-shadow cursor-pointer h-full">
+              <CardHeader>
+                <div className="flex items-start justify-between">
+                  <CardTitle className="text-xl">{tool.name}</CardTitle>
+                  <Badge variant="secondary">{tool.category}</Badge>
+                </div>
+                <CardDescription>{tool.description}</CardDescription>
+              </CardHeader>
+              
+              <CardContent>
+                <div className="space-y-2 text-sm text-muted-foreground">
+                  <div className="flex justify-between">
+                    <span>Version:</span>
+                    <span className="font-medium">{tool.version}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span>Size:</span>
+                    <span className="font-medium">{tool.fileSize}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span>Updated:</span>
+                    <span className="font-medium">{tool.lastUpdated}</span>
+                  </div>
+                </div>
+
+                <div className="flex flex-wrap gap-1 mt-4">
+                  {tool.tags.slice(0, 3).map((tag) => (
+                    <Badge key={tag} variant="outline" className="text-xs">
+                      {tag}
+                    </Badge>
+                  ))}
+                </div>
+              </CardContent>
+
+              <CardFooter>
+                <a 
+                  href={tool.downloadUrl} 
+                  download 
+                  onClick={(e) => e.stopPropagation()}
+                  className="w-full"
+                >
+                  <Button className="w-full" size="lg">
+                    <Download className="mr-2 h-4 w-4" />
+                    Download
+                  </Button>
+                </a>
+              </CardFooter>
+            </Card>
+          </Link>
+        ))}
+      </div>
+    );
+  };
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <div className="min-h-screen bg-background">
+      <NavigationHeader />
+      
+      {/* Stats Bar */}
+      <section className="border-b bg-muted/30">
+        <div className="container mx-auto px-4 py-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+            <div>
+              <p className="text-3xl font-bold text-primary">{tools.length}</p>
+              <p className="text-sm text-muted-foreground">Total Tools</p>
+            </div>
+            <div>
+              <p className="text-3xl font-bold text-primary">{categories.length - 1}</p>
+              <p className="text-sm text-muted-foreground">Categories</p>
+            </div>
+            <div>
+              <p className="text-3xl font-bold text-primary">
+                {tools.filter(t => t.featured).length}
+              </p>
+              <p className="text-sm text-muted-foreground">Featured Tools</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Hero Section */}
+      <section className="border-b bg-gradient-to-b from-violet-50/50 to-background dark:from-violet-950/20">
+        <div className="container mx-auto px-4 py-16 text-center">
+          <div className="inline-flex items-center gap-2 mb-4">
+            <Wrench className="h-8 w-8 text-primary" />
+            <h1 className="text-5xl font-bold bg-gradient-to-r from-violet-600 to-purple-600 bg-clip-text text-transparent">
+              AlphaIndex
+            </h1>
+          </div>
+          <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
+            Your one-stop shop for all internal tools, TestWare, and proprietary software 
+            built by our amazing Dev and QA teams.
+          </p>
+          
+          {/* Search Bar */}
+          <div className="max-w-md mx-auto relative">
+            <Search className="absolute left-3 top-3 h-5 w-5 text-muted-foreground" />
+            <Input 
+              placeholder="Search tools..." 
+              className="pl-10 h-11"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Tools Section with Category Tabs */}
+      <section className="container mx-auto px-4 py-12">
+        <div className="mb-8">
+          <h2 className="text-3xl font-bold mb-2">
+            {searchQuery === "" ? "Browse Tools" : "Search Results"}
+          </h2>
+          <p className="text-muted-foreground">
+            {searchQuery === "" 
+              ? "Filter by category to find the tools you need"
+              : `Showing results for "${searchQuery}"`
+            }
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+
+        <Tabs defaultValue="All" className="w-full">
+          <TabsList className="grid w-full max-w-md grid-cols-4 mb-8">
+            {categories.map((category) => (
+              <TabsTrigger key={category} value={category}>
+                {category}
+              </TabsTrigger>
+            ))}
+          </TabsList>
+
+          {categories.map((category) => (
+            <TabsContent key={category} value={category}>
+              <ToolGrid category={category} />
+            </TabsContent>
+          ))}
+        </Tabs>
+      </section>
+      <Footer />
     </div>
   );
 }

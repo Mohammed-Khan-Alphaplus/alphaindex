@@ -1,36 +1,201 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AlphaIndex 🔧
 
-## Getting Started
+Your one-stop shop for all internal tools, TestWare, and proprietary software built by our amazing Dev and QA teams.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+✨ **Browse Tools** - Easy-to-navigate catalog of all internal tools
+🔍 **Smart Search** - Real-time search across tool names, descriptions, and tags
+🏷️ **Category Filtering** - Filter by Testing, Development, DevOps, and more
+📥 **One-Click Downloads** - Direct download links for all tools
+📱 **Responsive Design** - Works on desktop, tablet, and mobile
+🎨 **Modern UI** - Beautiful interface with Violet Bloom theme
+
+## Project Structure
+```
+alphaindex/
+├── app/
+│   ├── page.tsx              # Homepage with search and categories
+│   ├── layout.tsx            # Root layout
+│   ├── globals.css           # Global styles (Violet Bloom theme)
+│   └── tools/
+│       └── [id]/
+│           ├── page.tsx      # Individual tool detail page
+│           └── not-found.tsx # 404 page
+├── components/
+│   ├── ui/                   # shadcn/ui components
+│   ├── navigation-header.tsx # Site header
+│   └── footer.tsx            # Site footer
+├── data/
+│   └── tools.json            # Tools database
+├── public/
+│   └── downloads/            # Tool executables (.exe files)
+└── .github/
+    └── workflows/
+        └── deploy.yml        # GitHub Actions deployment
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Adding New Tools
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. **Add tool metadata** to `data/tools.json`:
+```json
+{
+  "id": "my-new-tool",
+  "name": "My New Tool",
+  "description": "Brief description",
+  "category": "Testing",
+  "version": "1.0.0",
+  "lastUpdated": "2024-11-23",
+  "downloadUrl": "/downloads/my-new-tool.exe",
+  "fileSize": "2.5 MB",
+  "tags": ["tag1", "tag2"],
+  "maintainer": {
+    "name": "Your Team",
+    "contact": "team@company.com"
+  },
+  "prerequisites": [
+    "Windows 10 or higher"
+  ],
+  "featured": true
+}
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2. **Add the executable** to `public/downloads/my-new-tool.exe`
 
-## Learn More
+3. The tool will automatically appear on the site!
 
-To learn more about Next.js, take a look at the following resources:
+## Local Development
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Prerequisites
+- Node.js 18+ 
+- npm 9+
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Setup
 
-## Deploy on Vercel
+1. Clone the repository:
+```bash
+git clone https://github.com/your-org/alphaindex.git
+cd alphaindex
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+2. Install dependencies:
+```bash
+npm install
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+3. Run development server:
+```bash
+npm run dev
+```
+
+4. Open [http://localhost:3000](http://localhost:3000)
+
+### Building for Production
+```bash
+npm run build
+```
+
+This generates a static site in the `out/` folder.
+
+## Deployment
+
+The site automatically deploys to GitHub Pages when you push to the `main` branch.
+
+### Manual Deployment
+
+1. Enable GitHub Pages in your repository settings
+2. Set source to "GitHub Actions"
+3. Push to main branch
+4. Your site will be live at: `https://your-org.github.io/alphaindex`
+
+### Configuration
+
+Update the `basePath` in `next.config.js` to match your repository name:
+```js
+basePath: process.env.NODE_ENV === 'production' ? '/your-repo-name' : '',
+```
+
+## Tech Stack
+
+- **Framework:** Next.js 15
+- **UI Library:** shadcn/ui
+- **Styling:** Tailwind CSS
+- **Theme:** Violet Bloom
+- **Icons:** Lucide React
+- **Deployment:** GitHub Pages
+
+## Customization
+
+### Changing Colors
+
+Edit `app/globals.css` to customize the color scheme. The current theme uses violet/purple tones.
+
+### Adding Categories
+
+Categories are automatically detected from the tools in `data/tools.json`. Just add a new category to any tool!
+
+### Modifying Layout
+
+- Homepage: `app/page.tsx`
+- Tool details: `app/tools/[id]/page.tsx`
+- Header: `components/navigation-header.tsx`
+- Footer: `components/footer.tsx`
+
+## Support
+
+For questions or issues:
+- Email: tools@company.com
+- Internal GitHub Issues
+
+## License
+
+Internal use only. All tools are property of the company.
+
+---
+
+Built with ❤️ by the Dev & QA Teams
+```
+
+**Save the file.**
+
+---
+
+## Step 48: Create .gitignore (if not exists)
+
+Make sure you have a proper .gitignore file.
+
+**Check if `.gitignore` exists. If it does, verify it contains:**
+```
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# local env files
+.env*.local
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts

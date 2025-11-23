@@ -1,0 +1,122 @@
+{
+  "tools": [
+    {
+      "id": "example-tool",
+      "name": "Example Test Tool",
+      "description": "A sample tool for demonstration purposes",
+      "category": "Testing",
+      "version": "1.0.0",
+      "lastUpdated": "2024-11-23",
+      "downloadUrl": "/downloads/example-tool.exe",
+      "fileSize": "2.5 MB",
+      "tags": ["automation", "testing", "selenium"],
+      "maintainer": {
+        "name": "QA Team",
+        "contact": "qa@company.com"
+      },
+      "prerequisites": [
+        "Windows 10 or higher",
+        ".NET Framework 4.8"
+      ],
+      "featured": true
+    },
+    {
+      "id": "api-validator",
+      "name": "API Validator Pro",
+      "description": "Automated REST API testing and validation framework",
+      "category": "Testing",
+      "version": "2.3.1",
+      "lastUpdated": "2024-11-20",
+      "downloadUrl": "/downloads/api-validator.exe",
+      "fileSize": "4.1 MB",
+      "tags": ["api", "rest", "validation", "automation"],
+      "maintainer": {
+        "name": "Dev Team",
+        "contact": "dev@company.com"
+      },
+      "prerequisites": [
+        "Windows 10 or higher",
+        "Java Runtime 11+"
+      ],
+      "featured": true
+    },
+    {
+      "id": "db-seeder",
+      "name": "Database Seeder",
+      "description": "Quickly populate test databases with realistic data",
+      "category": "Development",
+      "version": "1.5.0",
+      "lastUpdated": "2024-11-18",
+      "downloadUrl": "/downloads/db-seeder.exe",
+      "fileSize": "3.2 MB",
+      "tags": ["database", "testing", "sql", "data"],
+      "maintainer": {
+        "name": "Backend Team",
+        "contact": "backend@company.com"
+      },
+      "prerequisites": [
+        "Windows 10 or higher",
+        ".NET 6.0 Runtime"
+      ],
+      "featured": true
+    },
+    {
+      "id": "perf-monitor",
+      "name": "Performance Monitor",
+      "description": "Real-time application performance monitoring and reporting",
+      "category": "DevOps",
+      "version": "3.0.2",
+      "lastUpdated": "2024-11-15",
+      "downloadUrl": "/downloads/perf-monitor.exe",
+      "fileSize": "5.8 MB",
+      "tags": ["performance", "monitoring", "metrics", "reporting"],
+      "maintainer": {
+        "name": "DevOps Team",
+        "contact": "devops@company.com"
+      },
+      "prerequisites": [
+        "Windows 10 or higher"
+      ],
+      "featured": true
+    },
+    {
+      "id": "log-analyzer",
+      "name": "Log Analyzer",
+      "description": "Parse and analyze application logs with advanced filtering",
+      "category": "DevOps",
+      "version": "1.8.3",
+      "lastUpdated": "2024-11-10",
+      "downloadUrl": "/downloads/log-analyzer.exe",
+      "fileSize": "2.9 MB",
+      "tags": ["logs", "debugging", "analysis"],
+      "maintainer": {
+        "name": "DevOps Team",
+        "contact": "devops@company.com"
+      },
+      "prerequisites": [
+        "Windows 10 or higher"
+      ],
+      "featured": false
+    },
+    {
+      "id": "ui-snapshot",
+      "name": "UI Snapshot Tool",
+      "description": "Visual regression testing for web applications",
+      "category": "Testing",
+      "version": "2.1.0",
+      "lastUpdated": "2024-11-08",
+      "downloadUrl": "/downloads/ui-snapshot.exe",
+      "fileSize": "6.3 MB",
+      "tags": ["ui", "visual", "regression", "testing"],
+      "maintainer": {
+        "name": "QA Team",
+        "contact": "qa@company.com"
+      },
+      "prerequisites": [
+        "Windows 10 or higher",
+        "Chrome Browser"
+      ],
+      "featured": true
+    }
+  ]
+}
