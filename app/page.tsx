@@ -11,7 +11,6 @@ import { useState } from "react";
 import Link from "next/link";
 import { NavigationHeader } from "@/components/navigation-header";
 import { Footer } from "@/components/footer";
-import Image from "next/image";
 
 export default function Home() {
   const tools = toolsData.tools;
@@ -159,8 +158,6 @@ export default function Home() {
             <Image
               src="/logo.svg"
               alt="AlphaPlus Logo"
-              width={32}
-              height={32}
               className="h-8 w-8"
             />
             <h1 className="text-5xl font-bold text-primary">

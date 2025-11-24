@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 
 export function NavigationHeader() {
   return (
@@ -9,8 +8,6 @@ export function NavigationHeader() {
           <Image 
             src="/logo.svg" 
             alt="Company Logo" 
-            width={24} 
-            height={24}
             className="h-6 w-6"
           />
           <span className="text-5xl font-bold text-primary">
