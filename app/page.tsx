@@ -155,11 +155,6 @@ export default function Home() {
       <section className="border-b bg-gradient-to-b from-violet-50/50 to-background dark:from-violet-950/20">
         <div className="container mx-auto px-4 py-16 text-center">
           <div className="inline-flex items-center gap-2 mb-4">
-            <img 
-              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 24 24' fill='none' stroke='%23dc2626' stroke-width='2'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M12 6v6l4 2'/%3E%3C/svg%3E"
-              alt="Test Logo" 
-              className="h-8 w-8"
-            />
             <img
               src="https://static.shuffle.dev/uploads/files/64/6483a081d2b57cbd42e31253591decab85782024/logo.svg"
               alt="AlphaPlus Logo"
