@@ -5,13 +5,13 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Download, Search, Wrench } from "lucide-react";
+import { Download, Search } from "lucide-react";
 import toolsData from "@/data/tools.json";
 import { useState } from "react";
 import Link from "next/link";
 import { NavigationHeader } from "@/components/navigation-header";
 import { Footer } from "@/components/footer";
-import { logo } from "@/components/ui/logo.svg";
+import Image from "next/image";
 
 export default function Home() {
   const tools = toolsData.tools;
@@ -156,9 +156,14 @@ export default function Home() {
       <section className="border-b bg-gradient-to-b from-violet-50/50 to-background dark:from-violet-950/20">
         <div className="container mx-auto px-4 py-16 text-center">
           <div className="inline-flex items-center gap-2 mb-4">
-            <Wrench className="h-8 w-8 text-primary" />
-            <logo className="h-8 w-8" />
-            <h1 className="text-5xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+            <Image
+              src="/logo.svg"
+              alt="AlphaPlus Logo"
+              width={32}
+              height={32}
+              className="h-8 w-8"
+            />
+            <h1 className="text-5xl font-bold text-primary">
               AlphaIndex
             </h1>
           </div>
