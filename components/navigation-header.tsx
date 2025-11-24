@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Wrench } from "lucide-react";
+import { logo } from "@/components/ui/logo.svg";
 
 export function NavigationHeader() {
   return (
@@ -7,6 +8,7 @@ export function NavigationHeader() {
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
           <Wrench className="h-6 w-6 text-primary" />
+          <logo className="h-6 w-6" />
           <span className="text-5xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
             AlphaIndex
           </span>

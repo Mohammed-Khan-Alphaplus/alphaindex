@@ -11,6 +11,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { NavigationHeader } from "@/components/navigation-header";
 import { Footer } from "@/components/footer";
+import { logo } from "@/components/ui/logo.svg";
 
 export default function Home() {
   const tools = toolsData.tools;
@@ -156,6 +157,7 @@ export default function Home() {
         <div className="container mx-auto px-4 py-16 text-center">
           <div className="inline-flex items-center gap-2 mb-4">
             <Wrench className="h-8 w-8 text-primary" />
+            <logo className="h-8 w-8" />
             <h1 className="text-5xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
               AlphaIndex
             </h1>
