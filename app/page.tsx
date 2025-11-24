@@ -155,7 +155,7 @@ export default function Home() {
       <section className="border-b bg-gradient-to-b from-violet-50/50 to-background dark:from-violet-950/20">
         <div className="container mx-auto px-4 py-16 text-center">
           <div className="inline-flex items-center gap-2 mb-4">
-            <Image
+            <img
               src="/logo.svg"
               alt="AlphaPlus Logo"
               className="h-8 w-8"
