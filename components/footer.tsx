@@ -41,11 +41,11 @@ export function Footer() {
             <h3 className="font-semibold mb-3">Contact</h3>
             <div className="space-y-2">
               <a 
-                href="mailto:tools@company.com" 
+                href="mailto:mohammed.khan@alphaplus.co.uk" 
                 className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
               >
                 <Mail className="h-4 w-4" />
-                tools@company.com
+                mohammed.khan@alphaplus.co.uk
               </a>
               <a 
                 href="#github" 
@@ -59,7 +59,7 @@ export function Footer() {
         </div>
 
         <div className="mt-8 pt-8 border-t text-center text-sm text-muted-foreground">
-          <p>© {new Date().getFullYear()} AlphaIndex. All tools are property of the company.</p>
+          <p>© {new Date().getFullYear()} AlphaPlus. All tools are property of the company.</p>
         </div>
       </div>
     </footer>

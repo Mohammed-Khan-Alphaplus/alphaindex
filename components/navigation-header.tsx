@@ -6,7 +6,7 @@ export function NavigationHeader() {
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
           <img 
-            src="/logo.svg" 
+            src="https://static.shuffle.dev/uploads/files/64/6483a081d2b57cbd42e31253591decab85782024/logo.svg" 
             alt="Company Logo" 
             className="h-6 w-6"
           />
