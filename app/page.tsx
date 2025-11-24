@@ -156,7 +156,7 @@ export default function Home() {
         <div className="container mx-auto px-4 py-16 text-center">
           <div className="inline-flex items-center gap-2 mb-4">
             <Wrench className="h-8 w-8 text-primary" />
-            <h1 className="text-5xl font-bold bg-gradient-to-r from-violet-600 to-purple-600 bg-clip-text text-transparent">
+            <h1 className="text-5xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">>
               AlphaIndex
             </h1>
           </div>
