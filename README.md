@@ -144,16 +144,14 @@ Categories are automatically detected from the tools in `data/tools.json`. Just 
 ## Support
 
 For questions or issues:
-- Email: tools@company.com
-- Internal GitHub Issues
+- Email: mohammed.khan@alphaplus.co.uk
 
 ## License
 
-Internal use only. All tools are property of the company.
+Internal use only. All tools are property of AlphaPlus.
 
 ---
 
-Built with ❤️ by the Dev & QA Teams
 ```
 
 **Save the file.**
